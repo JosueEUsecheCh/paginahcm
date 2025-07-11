@@ -1,0 +1,221 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0; padding: 0; 
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    align-items: center;
+    background-color: #133d87;
+    color: white;
+    padding: 10px 20px;
+    gap: 15px;
+}
+nav img {
+    height: 50px;
+    width: auto;
+}
+nav .titulo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 95%;
+}
+
+h1 {
+    margin-top: 20px;
+    color: #133d87;
+    user-select: none;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+form label {
+    font-weight: bold;
+    margin-right: 5px;
+    user-select: none;
+}
+form input[type="text"] {
+    padding: 7px 10px;
+    font-size: 1rem;
+    border: 2px solid #133d87;
+    border-radius: 4px;
+    min-width: 180px;
+}
+form button {
+    background-color: #133d87;
+    border: none;
+    color: white;
+    padding: 9px 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+form button:hover {
+    background-color: #0e2a61;
+}
+form a button {
+    background-color: #777;
+}
+form a button:hover {
+    background-color: #555;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+#btn-nueva {
+    background-color: #5c9eff;
+}
+#btn-nueva:hover {
+    background-color: #367be3;
+}
+
+
+
+/* TABLA CON SCROLL HORIZONTAL PARA MOVILES */
+.tabla-container {
+    overflow-x: auto;
+    border: 1px solid #133d87;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(19,61,135,0.15);
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+}
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+}
+thead th {
+    background-color: #133d87;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    user-select: none;
+}
+tbody tr:hover {
+    background-color: #f0f7ff;
+}
+
+/* TEXTO SIN RESULTADOS */
+.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: #133d87;
+    color: white;
+    padding: 15px 20px;
+
+    /* Centrar horizontalmente y en línea */
+    display: flex;
+    justify-content: center; /* Centra todo horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    gap: 30px;               /* Espacio entre info y bloque Instagram */
+    flex-wrap: nowrap;       /* No dejar en varias líneas */
+    user-select: none;
+}
+footer .info {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    user-select: none;
+}
+footer .instagram {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+.instagram-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.instagram-link svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
+.instagram-link:hover {
+  color: #5a91f0; /* color del texto al hacer hover */
+}
+
+.instagram-link:hover svg {
+  fill: #5a91f0; /* cambia color del ícono al hacer hover */
+}
+
+
+/* Responsive - móviles */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    nav .titulo {
+        font-size: 1.1rem;
+    }
+    form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    form input[type="text"] {
+        min-width: 100%;
+    }
+    footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    footer .instagram {
+        justify-content: center;
+    }
+}
