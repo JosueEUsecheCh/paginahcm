@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rrb_kbr*7v3yt)e3=*ws(+9^wyzwmoyob&upb)7ewz+f*s86h6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['paginahcm.onrender.com', 'www.paginahcm.onrender.com']
+ALLOWED_HOSTS = ['paginahcm.onrender.com', 'www.paginahcm.onrender.com','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 
 load_dotenv()  # carga las variables del archivo .env
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -94,8 +94,12 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT', '5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
+
 """
 DATABASES = {
     'default': {
@@ -107,7 +111,7 @@ DATABASES = {
         'PORT':'5432',
     }
 }
-
+"""
 
 
 # Password validation
