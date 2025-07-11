@@ -139,6 +139,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # carpeta para collectstati
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'consultas/static'),  # carpeta con tus archivos estáticos de la app
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
