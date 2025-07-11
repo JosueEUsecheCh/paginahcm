@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Consulta HCM</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <nav>
+        <img src="{% static 'img/logo_universidad.png' %}" alt="Logo Universidad" />
+        <div class="titulo">Universidad Nacional Experimental del Táchira</div>
+    </nav>
+
+ <main>
+    <h1>Consulta tu cédula</h1>
+
+<form id="consulta-form" method="POST" action="{% url 'consultar_cedula' %}" data-url-consultar="{% url 'consultar_cedula' %}">
+    {% csrf_token %}
+    <label for="cedula">Cédula del titular:</label>
+    <input type="text" name="cedula" id="cedula" placeholder="Ingresa tu cédula" value="{{ cedula }}" required />
+    <button type="button" id="btn-consultar">Consultar</button>
+    <button type="button" id="btn-nueva-consulta">Nueva consulta</button>
+</form>
+
+<div id="resultados-container">
+    {% if resultados %}
+        {% include 'consulta/resultado_parcial.html' %}
+    {% endif %}
+</div>
+
+</main>
+
+
+    <footer>
+        <div class="info">
+            Universidad Nacional Experimental del Táchira (UNET)<br />
+            Vicerrectorado Administrativo<br />
+            Dirección de Recursos Humanos
+        </div>
+        <!-- Aquí tu footer con Instagram, etc. -->
+        <div class="instagram">
+            <a href="https://www.instagram.com/drrhhunet/" target="_blank" rel="noopener noreferrer" class="instagram-link" style="display: flex; align-items: center; gap: 8px;">
+                <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28" aria-label="Instagram">
+                    <title>Instagram</title>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.413a4.92 4.92 0 0 1 1.675 1.008 4.92 4.92 0 0 1 1.007 1.675c.174.46.36 1.26.413 2.43.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.413 2.43a4.92 4.92 0 0 1-1.008 1.675 4.92 4.92 0 0 1-1.675 1.007c-.46.174-1.26.36-2.43.413-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.413a4.92 4.92 0 0 1-1.675-1.008 4.92 4.92 0 0 1-1.007-1.675c-.174-.46-.36-1.26-.413-2.43C2.175 15.747 2.163 15.368 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.413-2.43a4.92 4.92 0 0 1 1.008-1.675 4.92 4.92 0 0 1 1.675-1.007c.46-.174 1.26-.36 2.43-.413C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.735 0 8.332.013 7.052.072 5.775.131 4.646.353 3.68.757a6.918 6.918 0 0 0-2.51 1.639A6.918 6.918 0 0 0 .757 4.68C.353 5.646.131 6.775.072 8.052.013 9.332 0 9.735 0 12c0 2.265.013 2.668.072 3.948.059 1.277.281 2.406.685 3.372a6.918 6.918 0 0 0 1.639 2.51 6.918 6.918 0 0 0 2.51 1.639c.966.404 2.095.626 3.372.685 1.28.059 1.683.072 3.948.072s2.668-.013 3.948-.072c1.277-.059 2.406-.281 3.372-.685a6.918 6.918 0 0 0 2.51-1.639 6.918 6.918 0 0 0 1.639-2.51c.404-.966.626-2.095.685-3.372.059-1.28.072-1.683.072-3.948s-.013-2.668-.072-3.948c-.059-1.277-.281-2.406-.685-3.372a6.918 6.918 0 0 0-1.639-2.51 6.918 6.918 0 0 0-2.51-1.639c-.966-.404-2.095-.626-3.372-.685C14.668.013 14.265 0 12 0z"/>
+                    <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                </svg>
+                <span>@drrhhunet</span>
+            </a>
+        </div>
+    </footer>
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+
+</html>

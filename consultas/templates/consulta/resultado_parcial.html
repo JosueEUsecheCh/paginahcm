@@ -1,0 +1,44 @@
+{% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if resultados %}
+            <div class="tabla-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>C.I TITULAR</th>
+                            <th>APELLIDOS</th>
+                            <th>NOMBRES</th>
+                            <th>C.I BENEFICIARIO</th>
+                            <th>PARENTESCO</th>
+                            <th>SEXO</th>
+                            <th>FECHA DE NACIMIENTO</th>
+                            <th>EDAD</th>
+                            <th>TELEFONO</th>
+                            <th>CORREO ELECTRONICO</th>
+                            <th>DISCAPACIDAD</th>
+                            <th>BAJO CUSTODIA LEGAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fila in resultados %}
+                            <tr>
+                                <td>{{ fila.ci_titular }}</td>
+                                <td>{{ fila.apellidos }}</td>
+                                <td>{{ fila.nombres }}</td>
+                                <td>{{ fila.ci_beneficiario }}</td>
+                                <td>{{ fila.parentesco }}</td>
+                                <td>{{ fila.sexo }}</td>
+                                <td>{{ fila.fecha_nacimiento|date:"d/m/Y" }}</td>
+                                <td>{{ fila.edad }}</td>
+                                <td>{{ fila.telefono }}</td>
+                                <td>{{ fila.correo }}</td>
+                                <td>{{ fila.discapacidad }}</td>
+                                <td>{{ fila.bajo_custodia_legal }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
