@@ -82,7 +82,10 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 
 
-load_dotenv()  # carga las variables del archivo .env
+
+
+if os.getenv('DJANGO_DEVELOPMENT') == 'True':
+    load_dotenv()
 
 DATABASES = {
     'default': {
