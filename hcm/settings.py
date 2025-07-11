@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+
 
 
 
@@ -83,10 +83,11 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 
 # Solo cargar .env si estás en desarrollo local
-if os.getenv('DJANGO_DEVELOPMENT') == 'True':
-    load_dotenv()
 
-DEBUG = os.getenv('DJANGO_DEVELOPMENT', 'False') == 'True'
+# Cargar .env solo en desarrollo
+if os.getenv('DJANGO_DEVELOPMENT') == 'True':
+    from dotenv import load_dotenv
+    load_dotenv()
 
 DATABASES = {
     'default': {
@@ -101,6 +102,7 @@ DATABASES = {
         },
     }
 }
+
 
 print("DB_NAME:", os.getenv('DB_NAME'))
 print("DB_USER:", os.getenv('DB_USER'))
