@@ -80,12 +80,13 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 
 
+import os
+from dotenv import load_dotenv
 
+# Carga las variables de entorno desde el .env en la raíz
+load_dotenv()
 
-
-
-if os.getenv('DJANGO_DEVELOPMENT') == 'True':
-    load_dotenv()
+DEBUG = os.getenv('DJANGO_DEVELOPMENT', 'False') == 'True'
 
 DATABASES = {
     'default': {
@@ -100,6 +101,7 @@ DATABASES = {
         },
     }
 }
+
 print("DB_NAME:", os.getenv('DB_NAME'))
 print("DB_USER:", os.getenv('DB_USER'))
 print("DB_PASSWORD:", os.getenv('DB_PASSWORD'))
