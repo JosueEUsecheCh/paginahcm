@@ -5,13 +5,16 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hcm.settings')
 django.setup()
 
-# ✅ Ahora sí importa el modelo
 from consultas.models import RegistroFamiliar
-
 import csv
 from datetime import datetime
 
 def run():
+    # 🚨 BORRAR TODOS LOS REGISTROS ANTES DE IMPORTAR
+    print("🗑️ Borrando todos los registros anteriores...")
+    RegistroFamiliar.objects.all().delete()
+
+    print("📥 Cargando nuevos datos desde CSV...")
     with open('consulta_hcm.csv', encoding='utf-8-sig') as archivo_csv:
         lector = csv.DictReader(archivo_csv, delimiter=';')
 
@@ -41,7 +44,7 @@ def run():
                 custodia_legal=fila['INDICAR BAJO CUSTODIA LEGAL'].strip(),
             )
 
-    print("✅ ¡Datos importados exitosamente!")
+    print("✅ ¡Datos importados y base de datos actualizada!")
 
 if __name__ == '__main__':
     run()
