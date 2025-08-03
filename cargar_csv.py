@@ -1,20 +1,24 @@
 import os
 import django
-
-# ✅ Establecer configuración de Django ANTES de importar modelos
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hcm.settings')
-django.setup()
-
-from consultas.models import RegistroFamiliar
 import csv
 from datetime import datetime
 
+# ✅ Configura Django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hcm.settings')
+django.setup()
+
+# ✅ Importa tu modelo
+from consultas.models import RegistroFamiliar
+
 def run():
-    # 🚨 BORRAR TODOS LOS REGISTROS ANTES DE IMPORTAR
     print("🗑️ Borrando todos los registros anteriores...")
     RegistroFamiliar.objects.all().delete()
 
     print("📥 Cargando nuevos datos desde CSV...")
+
+    registros_batch = []  # lista para acumular objetos
+    batch_size = 500  # ✅ mete de 500 en 500
+
     with open('consulta_hcm.csv', encoding='utf-8-sig') as archivo_csv:
         lector = csv.DictReader(archivo_csv, delimiter=';')
 
@@ -29,7 +33,7 @@ def run():
             except (ValueError, KeyError):
                 edad = None
 
-            RegistroFamiliar.objects.create(
+            registros_batch.append(RegistroFamiliar(
                 ci_titular=fila['C.I TITULAR'].strip()[:20],
                 apellidos=fila['APELLIDOS'].strip(),
                 nombres=fila['NOMBRES'].strip(),
@@ -42,9 +46,18 @@ def run():
                 correo=fila['CORREO ELECTRONICO'].strip(),
                 discapacidad=fila['DISCAPACIDAD'].strip(),
                 custodia_legal=fila['INDICAR BAJO CUSTODIA LEGAL'].strip(),
-            )
+            ))
 
-    print("✅ ¡Datos importados y base de datos actualizada!")
+            # ✅ Si la lista llega a 500, insertamos en bloque
+            if len(registros_batch) >= batch_size:
+                RegistroFamiliar.objects.bulk_create(registros_batch)
+                registros_batch.clear()
+
+        # ✅ Insertar lo que quedó pendiente
+        if registros_batch:
+            RegistroFamiliar.objects.bulk_create(registros_batch)
+
+    print("✅ ¡Datos importados exitosamente!")
 
 if __name__ == '__main__':
     run()
