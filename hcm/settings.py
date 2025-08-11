@@ -84,7 +84,6 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 # Solo cargar .env si estás en desarrollo local
 from dotenv import load_dotenv
-load_dotenv()
 # Cargar .env solo en desarrollo
 if os.getenv('DJANGO_DEVELOPMENT') == 'True':
     
@@ -99,7 +98,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT', '5432'),
         'OPTIONS': {
-            'sslmode': 'disable',
+            'sslmode': 'require',
         },
     }
 }
