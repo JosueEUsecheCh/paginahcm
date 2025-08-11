@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 # Solo cargar .env si estás en desarrollo local
 from dotenv import load_dotenv
+load_dotenv()
 # Cargar .env solo en desarrollo
 if os.getenv('DJANGO_DEVELOPMENT') == 'True':
     
