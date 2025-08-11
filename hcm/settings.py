@@ -87,8 +87,10 @@ load_dotenv()  # siempre carga el .env primero
 
 if os.getenv('DJANGO_DEVELOPMENT') == 'True':
     DEBUG = True
+    print("Entro al true")
 else:
     DEBUG = False
+    print("Entro al false")
 
 
 DATABASES = {
