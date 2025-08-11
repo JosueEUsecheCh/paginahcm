@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rrb_kbr*7v3yt)e3=*ws(+9^wyzwmoyob&upb)7ewz+f*s86h6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['paginahcm.onrender.com', 'www.paginahcm.onrender.com','127.0.0.1', 'localhost']
 
@@ -82,12 +82,14 @@ WSGI_APPLICATION = 'hcm.wsgi.application'
 
 
 
-# Solo cargar .env si estás en desarrollo local
 from dotenv import load_dotenv
-# Cargar .env solo en desarrollo
+load_dotenv()  # siempre carga el .env primero
+
 if os.getenv('DJANGO_DEVELOPMENT') == 'True':
-    
-    load_dotenv()
+    DEBUG = True
+else:
+    DEBUG = False
+
 
 DATABASES = {
     'default': {
