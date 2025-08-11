@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rrb_kbr*7v3yt)e3=*ws(+9^wyzwmoyob&upb)7ewz+f*s86h6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['paginahcm.onrender.com', 'www.paginahcm.onrender.com','127.0.0.1', 'localhost']
 
